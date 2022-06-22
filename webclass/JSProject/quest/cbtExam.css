@@ -3,68 +3,79 @@
 } */
 
 
-.container{
+.container {
     width: 35%;
     border: solid 1px rgb(128, 0, 128);
     box-shadow: 1px 1px 2px 2px rgb(128, 0, 128);
     /* box-shadow: 1px 1px 2px 2px rgb(55, 157, 204); */
     margin-top: 5%;
-   
-    
 }
 
-#timeLeft{
+#timeLeft {
     /* text-align: center; */
-    color: white;
+    color: black;
     font-weight: bolder;
-    padding-top: 14px;
+    /* padding-top: 14px; */
+    margin-top: 5px;
     list-style: none;
 }
-.logo1{
+
+.timeover {
+    text-align: center;
+}
+
+.logo1 {
     text-align: center;
     width: 100%;
 }
-.logo2{
-    width: 250px;
-    height: 250px;
+
+.logo2 {
+    width: 200px;
+    height: 200px;
 }
-#next{
+
+#next {
     background-color: purple
-   
 }
-.net{
+
+.net {
     text-align: center;
     padding-bottom: 5%;
 }
-#nav{
+
+#nav {
     background-color: purple
-    
-}
-.text{
-    color: white;
-    padding-top: 10px;
-    
 }
 
-#examContainer{
+#navbarDropdown {
+    color: #fff;
+}
+
+.text {
+    color: white;
+    padding-top: 10px;
+
+}
+
+#examContainer {
     color: black;
     font-weight: 1000;
     text-align: justify;
 }
 
-#optionContainer{
+#optionContainer {
     color: black;
-    font-weight: 1000;
+    font-weight: 500;
     text-align: justify;
     padding-top: 3%;
 }
 
-.logout{
+.logout {
     color: white;
-    text-decoration:none
+    text-decoration: none
 }
 
-#ola{
+#ola {
     color: white;
-    text-decoration:none
+    text-decoration: none
 }

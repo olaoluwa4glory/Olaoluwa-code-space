@@ -101,12 +101,14 @@ const examQuestions = [{
 const examContainer = document.getElementById('examContainer')
 const optionContainer = document.getElementById('optionContainer')
 const next = document.getElementById('next')
-const back = document.getElementById('back')
+// const back = document.getElementById('back')
 const submitbtn = document.getElementById('submitBtn')
+const title = document.getElementById('courseTitle')
 const lastInstruction = document.getElementById('lastInstruction')
 const myScore = document.getElementById('myScore')
 const timeUp = document.getElementById('timeUp')
 const scoreContainer = document.getElementById('scoreContainer')
+const print = document.getElementById('printBtn')
 
 
 // Initializing the variable myExam to zero
@@ -130,9 +132,6 @@ function loadExam() {
        c)  ${exam.c} &nbsp;&nbsp; <input type = 'radio' name = 'option' value = '${exam.c}'/> <br/><br/>
        d)  ${exam.d} &nbsp;&nbsp; <input type = 'radio' name = 'option' value = '${exam.d}'/><br/><br/>
     `
-    
-
-
 
     optionContainer.innerHTML = options
 }
@@ -147,9 +146,12 @@ lastInstruction.style.display = 'none'
 // Hide the timeUp button
 timeUp.style.display = 'none'
 
+// Hide the print button
+printBtn.style.display = 'none'
+
 // Add an event listener to foward and backward button
 next.addEventListener('click', validateNext)
-back.addEventListener('click', validateBack)
+// back.addEventListener('click', validateBack)
 
 // Creating a function for validation
 function validateNext() {
@@ -161,18 +163,18 @@ function validateNext() {
 
         if (myExam === examQuestions.length - 1) {
             submitBtn.style.display = 'Block'
-            next.style.display = 'Block'
+            next.style.display = 'none'
             // back.style.display = 'Block'
             lastInstruction.style.display = 'Block'
         }
 
-        if (myExam === examQuestions.length - 2) {
-            back.style.display = 'Block'
-        }
-    // For correct score
-        if (radioCheck.value === examQuestions[myExam].correctAnswer){
+        // if (myExam === examQuestions.length - 2) {
+        //     back.style.display = 'Block'
+        // }
+        // For correct score
+        if (radioCheck.value === examQuestions[myExam].correctAnswer) {
             score += 10
-            alert (`You score ${score}`)
+            // alert(`You score ${score}`)
 
         }
 
@@ -185,33 +187,35 @@ function validateNext() {
     }
 }
 // moving to the previous question
-function validateBack() {
-    myExam--
-    loadExam()
-    let radioCheck = document.querySelector('input[type= radio]:checked')
+// function validateBack() {
+//     myExam--
+//     loadExam()
+//     let radioCheck = document.querySelector('input[type= radio]:checked')
 
-    // if(radioCheck){
-    //     alert('please pick an answer')
-    // }
-    // else{
+// if(radioCheck){
+//     alert('please pick an answer')
+// }
+// else{
 
-    //     // moving to the next question
+//     // moving to the next question
 
 
-    // }
-}
+// }
+// }
 
 // Adding an event listener to the submit button
 submitBtn.addEventListener('click', submitFunction)
 
-function submitFunction(){
+function submitFunction() {
     examContainer.style.display = 'none'
     optionContainer.style.display = 'none'
     next.style.display = 'none'
-    back.style.display = 'none'
-    submitbtn.style.display = 'none' 
-    lastInstruction.style.display = 'none' 
-    scoreContainer.textContent= `You score ${score} / ${examQuestions.length * 10}`
+    // back.style.display = 'none'
+    submitbtn.style.display = 'none'
+    courseTitle.style.display = 'none'
+    lastInstruction.style.display = 'none'
+    printBtn.style.display = 'Block'
+    scoreContainer.textContent = `You score ${score} / ${examQuestions.length * 10}`
     scoreContainer.style.fontSize = '40px'
     scoreContainer.style.paddingTop = '100px'
     scoreContainer.style.textAlign = 'center'
@@ -226,37 +230,40 @@ function submitFunction(){
 
 // Timer functionality
 
-let totalTime = 20;
+let totalTime = 180;
 let min = 0;
 let sec = 0;
 let counter = 0;
 let timer = setInterval(myTimer, 1000)
 
-function myTimer(){
+function myTimer() {
     counter++;
-    min = Math.floor((totalTime - counter)/60)
+    min = Math.floor((totalTime - counter) / 60)
     sec = totalTime - min * 60 - counter
     // console.log(sec);
 
-    
-// const timerBox = document.getElementById('timerBox')
-const timeLeft = document.getElementById('timeLeft')
-timeLeft.textContent = min + " : " + sec  
-timeLeft.style.fontSize = '1.2rem'
-// timerBox.appendChild(timeLeft)
 
-if(counter === totalTime){
-   console.log(counter === totalTime);
-    clearInterval(timer)
-    timeUp.style.display = 'block'
-    questionContainer.style.display = 'none'
-    optionsContainer.style.display = 'none'
-    // btn2.style.display = 'none'
-    // btn.style.display = 'none'
-    scoreContainer.textContent= `You score ${score} / ${examQuestions.length * 10}`
-    scoreContainer.style.fontSize = '40px'
-    scoreContainer.style.paddingTop = '100px'
-    scoreContainer.style.textAlign = 'center'
-    // btn3.style.display = 'block'
-}
+    // const timerBox = document.getElementById('timerBox')
+    const timeLeft = document.getElementById('timeLeft')
+    timeLeft.textContent = min + " : " + sec
+    timeLeft.style.fontSize = '1.2rem'
+    // timerBox.appendChild(timeLeft)
+
+    if (counter === totalTime) {
+        console.log(counter === totalTime);
+        clearInterval(timer)
+        timeUp.style.display = 'block'
+        examContainer.style.display = 'none'
+        optionContainer.style.display = 'none'
+        next.style.display = 'none'
+        // back.style.display = 'none'
+        courseTitle.style.display = 'none'
+        printBtn.style.display = 'Block'
+        scoreContainer.textContent = `You score ${score} / ${examQuestions.length * 10}`
+        scoreContainer.style.fontSize = '40px'
+        scoreContainer.style.paddingTop = '100px'
+        scoreContainer.style.textAlign = 'center'
+
+        // btn3.style.display = 'block'
+    }
 }
